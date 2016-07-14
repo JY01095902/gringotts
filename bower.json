@@ -1,0 +1,21 @@
+{
+  "name": "gringotts",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "shi.yanxun"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "Framework7": "framework7#^1.4.2"
+  }
+}
