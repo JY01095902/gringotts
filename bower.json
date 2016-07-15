@@ -15,7 +15,11 @@
     "test",
     "tests"
   ],
+  "dependencies": {
+    "Framework7": "framework7#^1.4.2",
+    "react": "^15.2.1"
+  },
   "devDependencies": {
-    "Framework7": "framework7#^1.4.2"
+    "babel": "*"
   }
 }

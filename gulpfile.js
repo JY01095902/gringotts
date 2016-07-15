@@ -16,6 +16,17 @@ gulp.task('load-framework7', function () {
         .pipe(gulp.dest('./app/.tmp/plugins/framework7/img'));
 });
 
+gulp.task('load-react', function () {
+    gulp.src('./bower_components/react/react.js')
+        .pipe(gulp.dest('./app/.tmp/plugins/react'));
+    gulp.src('./bower_components/react/react-dom.js')
+        .pipe(gulp.dest('./app/.tmp/plugins/react'));
+    gulp.src('./bower_components/react/react-with-addons.js')
+        .pipe(gulp.dest('./app/.tmp/plugins/react'));
+    gulp.src('./bower_components/babel/browser.js')
+        .pipe(gulp.dest('./app/.tmp/js/babel'));
+});
+
 gulp.task('less', function () {
     gulp.src('./app/styles/*.less')
         .pipe(less())
@@ -42,4 +53,4 @@ gulp.task('watch', function () {
     gulp.watch('./app/styles/**/*.less', ['less']);
 })
 
-gulp.task('default', ['load-framework7', 'less', 'webserver', 'reload', 'watch']);
+gulp.task('default', ['load-framework7', 'load-react', 'less', 'webserver', 'reload', 'watch']);
