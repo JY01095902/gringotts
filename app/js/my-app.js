@@ -31,31 +31,10 @@ var meView = myApp.addView('#meView', {
     dynamicNavbar: true
 });
 
-/*$$(document).on('pageInit', function (e) {
-    var page = e.detail.page;
-    // Code for About page
-    if (page.name === 'about') {
-        // We need to get count GET parameter from URL (about.html?count=10)
-        var count = page.query.count;
-        // Now we can generate some dummy list
-        var listHTML = '<ul>';
-        for (var i = 0; i < count; i++) {
-            listHTML += '<li>' + i + '</li>';
-        }
-        listHTML += '</ul>';
-        // And insert generated list to page content
-        $$(page.container).find('.page-content').append(listHTML);
-    }
-    // Code for Services page
-    if (page.name === 'services') {
-        myApp.alert('Here comes our services!');
-    }
-});*/
-
 myApp.onPageBack('settingsPage', function (page) {
-    myApp.showToolbar('.toolbar');
+    $$('.toolbar').css('display', 'inline-block');
 });
 
 myApp.onPageInit('settingsPage', function (page) {
-    myApp.hideToolbar('.toolbar');
+    $$('.toolbar').css('display', 'none');
 });
