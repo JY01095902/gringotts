@@ -58,4 +58,21 @@ gulp.task('watch', function () {
     gulp.watch('./app/styles/**/*.less', ['less']);
 })
 
+gulp.task('dist', function () {
+    gulp.src('./app/pages/**/*.html')
+        .pipe(gulp.dest('./dist/pages'));
+    gulp.src('./app/index.html')
+        .pipe(gulp.dest('./dist'));
+    gulp.src('./bower_components/Framework7/dist/css/*.ios.min.css')
+        .pipe(gulp.dest('./dist/plugins/framework7/css'));
+    gulp.src('./bower_components/Framework7/dist/css/*.ios.colors.min.css')
+        .pipe(gulp.dest('./dist/plugins/framework7/css'));
+    gulp.src('./bower_components/Framework7/dist/js/framework7.min.js')
+        .pipe(gulp.dest('./dist/plugins/framework7/js'));
+    gulp.src('./app/.tmp/js/my-app.js')
+        .pipe(gulp.dest('./dist/js'));
+    gulp.src('./bower_components/Framework7/dist/img/*-ios.*')
+        .pipe(gulp.dest('./dist/plugins/framework7/img'));
+})
+
 gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'webserver', 'reload', 'watch']);
