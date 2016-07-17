@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
-    connect = require('gulp-connect')
-    less = require('gulp-less');
+    connect = require('gulp-connect'),
+    less = require('gulp-less'),
+    clean = require('gulp-clean');
 
 gulp.task('load-framework7', function () {
     gulp.src('./bower_components/Framework7/dist/css/*.ios.css')
@@ -58,16 +59,21 @@ gulp.task('watch', function () {
     gulp.watch('./app/styles/**/*.less', ['less']);
 })
 
-gulp.task('dist', function () {
+gulp.task('clean', function () {
+    return gulp.src('./dist')
+        .pipe(clean({force: true}));
+})
+
+gulp.task('dist', ['clean'], function () {
     gulp.src('./app/pages/**/*.html')
         .pipe(gulp.dest('./dist/pages'));
     gulp.src('./app/index.html')
         .pipe(gulp.dest('./dist'));
-    gulp.src('./bower_components/Framework7/dist/css/*.ios.min.css')
+    gulp.src('./bower_components/Framework7/dist/css/*.ios.css')
         .pipe(gulp.dest('./dist/plugins/framework7/css'));
-    gulp.src('./bower_components/Framework7/dist/css/*.ios.colors.min.css')
+    gulp.src('./bower_components/Framework7/dist/css/*.ios.colors.css')
         .pipe(gulp.dest('./dist/plugins/framework7/css'));
-    gulp.src('./bower_components/Framework7/dist/js/framework7.min.js')
+    gulp.src('./bower_components/Framework7/dist/js/framework7.js')
         .pipe(gulp.dest('./dist/plugins/framework7/js'));
     gulp.src('./app/.tmp/js/my-app.js')
         .pipe(gulp.dest('./dist/js'));
