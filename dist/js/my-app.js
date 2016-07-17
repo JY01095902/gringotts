@@ -12,6 +12,11 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+
+var indexView = myApp.addView('.indexView', {
+    // Because we use fixed-through navbar we can enable dynamic navbar
+    dynamicNavbar: true
+});
 // Add views
 var accountsView = myApp.addView('#accountsView', {
     // Because we use fixed-through navbar we can enable dynamic navbar
@@ -26,14 +31,10 @@ var meView = myApp.addView('#meView', {
     dynamicNavbar: true
 });
 
-myApp.onPageReinit('mePage', function (page) {
-    myApp.showToolbar('.toolbar');
+myApp.onPageBack('settingsPage', function (page) {
+    $$('.toolbar').css('display', 'inline-block');
 });
 
 myApp.onPageInit('settingsPage', function (page) {
-    myApp.hideToolbar('.toolbar');
-});
-
-myApp.onPageInit('aboutPage', function (page) {
-    myApp.hideToolbar('.toolbar');
+    $$('.toolbar').css('display', 'none');
 });
