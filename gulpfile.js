@@ -27,6 +27,11 @@ gulp.task('load-react', function () {
         .pipe(gulp.dest('./app/.tmp/js/babel'));
 });
 
+gulp.task('load-js', function () {
+    gulp.src('./app/js/my-app.js')
+        .pipe(gulp.dest('./app/.tmp/js'));
+});
+
 gulp.task('less', function () {
     gulp.src('./app/styles/*.less')
         .pipe(less())
@@ -53,4 +58,4 @@ gulp.task('watch', function () {
     gulp.watch('./app/styles/**/*.less', ['less']);
 })
 
-gulp.task('default', ['load-framework7', 'load-react', 'less', 'webserver', 'reload', 'watch']);
+gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'webserver', 'reload', 'watch']);
