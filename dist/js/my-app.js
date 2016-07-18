@@ -19,7 +19,7 @@ var accountsView = myApp.addView('#accountsView', {
 });
 var billsView = myApp.addView('#billsView', {
     // Because we use fixed-through navbar we can enable dynamic navbar
-    //dynamicNavbar: true
+    dynamicNavbar: true
 });
 var meView = myApp.addView('#meView', {
     // Because we use fixed-through navbar we can enable dynamic navbar
@@ -42,4 +42,32 @@ $$('#meView').on('show', function (page) {
     $$('.tab-accounts').removeClass('active');
     $$('.tab-bills').removeClass('active');
     $$('.tab-me').addClass('active');
+});
+
+var carVendors = {
+    Japanese : ['Honda', 'Lexus', 'Mazda', 'Nissan', 'Toyota'],
+    German : ['Audi', 'BMW', 'Mercedes', 'Volkswagen', 'Volvo'],
+    American : ['Cadillac', 'Chrysler', 'Dodge', 'Ford']
+};
+var pickerDependent = myApp.picker({
+    input: '#picker-dependent',
+    rotateEffect: true,
+    formatValue: function (picker, values) {
+        return values[1];
+    },
+    cols: [
+        {
+            textAlign: 'left',
+            values: ['Japanese', 'German', 'American'],
+            onChange: function (picker, country) {
+                if(picker.cols[1].replaceValues){
+                    picker.cols[1].replaceValues(carVendors[country]);
+                }
+            }
+        },
+        {
+            values: carVendors.Japanese,
+            width: 160,
+        },
+    ]
 });
