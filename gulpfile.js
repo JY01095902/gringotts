@@ -83,4 +83,4 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/plugins/framework7/img'));
 })
 
-gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'webserver', 'reload', 'watch']);
+gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'webserver', 'reload', 'watch', 'dist']);
