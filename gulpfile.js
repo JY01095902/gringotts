@@ -71,6 +71,8 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/pages'));
     gulp.src('./app/index.html')
         .pipe(gulp.dest('./dist'));
+    gulp.src('./app/.tmp/css/**/*.css')
+        .pipe(gulp.dest('./dist/css'));
     gulp.src('./bower_components/Framework7/dist/css/*.ios.css')
         .pipe(gulp.dest('./dist/plugins/framework7/css'));
     gulp.src('./bower_components/Framework7/dist/css/*.ios.colors.css')
