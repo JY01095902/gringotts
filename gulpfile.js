@@ -34,9 +34,9 @@ gulp.task('load-js', function () {
 });
 
 gulp.task('less', function () {
-    gulp.src('./app/styles/*.less')
+    gulp.src('./app/css/*.less')
         .pipe(less())
-        .pipe(gulp.dest('./app/.tmp/styles'))
+        .pipe(gulp.dest('./app/.tmp/css'))
 })
 
 gulp.task('webserver', function () {
@@ -50,14 +50,14 @@ gulp.task('webserver', function () {
 gulp.task('reload', function () {
     gulp.src('./app/**/*.html')
         .pipe(watch('./app/**/*.html'))
-        .pipe(watch('./app/.tmp/styles/**/*.css'))
+        .pipe(watch('./app/.tmp/css/**/*.css'))
         .pipe(watch('./app/.tmp/js/**/*.js'))
         .pipe(connect.reload());
 })
 
 gulp.task('watch', function () {
     gulp.watch('./app/**/*.html', ['reload']);
-    gulp.watch('./app/styles/**/*.less', ['less']);
+    gulp.watch('./app/css/**/*.less', ['less']);
     gulp.watch('./app/js/**/*.js', ['load-js']);
 })
 

@@ -13,7 +13,7 @@
         <!-- Path to Framework7 iOS related color styles -->
         <link rel="stylesheet" href="/plugins/framework7/css/framework7.ios.colors.css">
         <!-- Path to your custom app styles-->
-        <link rel="stylesheet" href="/styles/index.css">
+        <link rel="stylesheet" href="/css/billsPage.css">
     </head>
     <body>
         <!-- Status bar overlay for full screen mode (PhoneGap) -->
@@ -29,7 +29,7 @@
                 <div class="navbar">
                     <div class="navbar-inner">
                         <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                        <div class="center sliding">账户</div>
+                        <div class="center sliding">ACCOUNTS</div>
                     </div>
                 </div>
                 <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -45,9 +45,9 @@
                 <!-- toolbar start -->
                 <div class="toolbar tabbar">
                     <div class="toolbar-inner">
-                        <a href="#accountsView" class="tab-link tab-accounts">账户</a>
-                        <a href="#billsView" class="tab-link tab-bills">账单</a>
-                        <a href="#meView" class="tab-link tab-me">我</a>
+                        <a href="#accountsView" class="tab-link tab-accounts">Accounts</a>
+                        <a href="#billsView" class="tab-link tab-bills">Bills</a>
+                        <a href="#meView" class="tab-link tab-me">Me</a>
                     </div>
                 </div>
             </div>
@@ -56,22 +56,78 @@
             <div id="billsView" class="view view-main tab active">
                 <div class="navbar">
                     <div class="navbar-inner">
-                        <div class="center sliding">账单</div>
+                        <div class="center sliding">Bills</div>
+                        <div class="right">
+                            <a href="pages/addSpending.html" class="link">Add</a>
+                        </div>
                     </div>
                 </div>
                 <div class="pages navbar-through">
-                    <div data-page="billsPage" class="page">
+                    <div data-page="billsPage" class="page billsPage">
                         <div class="page-content">
-                            <p>这里应该是账单列表</p>
+                            <div class="content-block-title">Mail App</div>
+                            <div class="list-block media-list">
+                                <ul>
+                                    <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">Twitter</div>
+                                                <div class="item-after">￥19.50</div>
+                                            </div>
+                                            <div class="item-title-row">
+                                                <div class="item-subtitle">New messages</div>
+                                                <div class="item-after">from John Doe</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    </li>
+                                    <li class="swipeout">
+                                    <div class="swipeout-content">
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">Twitter</div>
+                                                    <div class="item-after">￥19.50</div>
+                                                </div>
+                                                <div class="item-title-row">
+                                                    <div class="item-subtitle">New messages</div>
+                                                    <div class="item-after">from John Doe</div>
+                                                </div>
+                                                <div class="item-text">Lorem ipsum dolor sit amet...</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="swipeout-actions-right">
+                                        <!-- Add this button and item will be deleted automatically -->
+                                        <a href="#" class="swipeout-delete">Delete</a>
+                                    </div>
+                                    </li>
+                                    <li>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">Twitter</div>
+                                                <div class="item-after">￥19.50</div>
+                                            </div>
+                                            <div class="item-title-row">
+                                                <div class="item-subtitle">New messages</div>
+                                                <div class="item-after">from John Doe</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- toolbar start -->
                 <div class="toolbar tabbar">
                     <div class="toolbar-inner">
-                        <a href="#accountsView" class="tab-link tab-accounts">账户</a>
-                        <a href="#billsView" class="tab-link tab-bills">账单</a>
-                        <a href="#meView" class="tab-link tab-me">我</a>
+                        <a href="#accountsView" class="tab-link tab-accounts">Accounts</a>
+                        <a href="#billsView" class="tab-link tab-bills active">Bills</a>
+                        <a href="#meView" class="tab-link tab-me">Me</a>
                     </div>
                 </div>
             </div>
@@ -92,7 +148,7 @@
                                         <a href="pages/settings.html" class="item-link">
                                             <div class="item-content">
                                                 <div class="item-inner">
-                                                    <div class="item-title">设置</div>
+                                                    <div class="item-title">Settings</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -105,19 +161,12 @@
                 <!-- toolbar start -->
                 <div class="toolbar tabbar">
                     <div class="toolbar-inner">
-                        <a href="#accountsView" class="tab-link tab-accounts">账户</a>
-                        <a href="#billsView" class="tab-link tab-bills">账单</a>
-                        <a href="#meView" class="tab-link tab-me">我</a>
+                        <a href="#accountsView" class="tab-link tab-accounts">Accounts</a>
+                        <a href="#billsView" class="tab-link tab-bills">Bills</a>
+                        <a href="#meView" class="tab-link tab-me">Me</a>
                     </div>
                 </div>
             </div>
-            <!-- <div class="toolbar tabbar">
-                    <div class="toolbar-inner">
-                        <a href="#accountsView" class="tab-link">账户</a>
-                        <a href="#billsView" class="tab-link active">账单</a>
-                        <a href="#meView" class="tab-link">我</a>
-                    </div>
-                </div>-->
         </div>
         <!-- Path to Framework7 Library JS-->
         <script type="text/javascript" src="/plugins/framework7/js/framework7.js"></script>
