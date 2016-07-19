@@ -98,9 +98,9 @@ myApp.onPageInit('chooseAccountPage', function (e) {
             ]
         }
     ];
-    var chooseAccountBlock = React.createFactory(ChooseAccountBlock);
+    var chooseAccountVault = React.createFactory(ChooseAccountVault);
     ReactDOM.render(
-        chooseAccountBlock({ id: accounts[1].vaults[0].id, name: accounts[1].vaults[0].name, chests: accounts[1].vaults[0].chests}),
+        chooseAccountVault({ id: accounts[1].vaults[0].id, name: accounts[1].vaults[0].name, chests: accounts[1].vaults[0].chests}),
         document.getElementById('example')
     );
     $$('.chooseAccountPage label.label-radio input[type=radio]').change(function (event,obj) {
