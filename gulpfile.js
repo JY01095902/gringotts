@@ -92,6 +92,15 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/js'));
     gulp.src('./app/.tmp/components/**/*.js')
         .pipe(gulp.dest('./dist/components'));
+        
+    gulp.src('./bower_components/react/react.js')
+        .pipe(gulp.dest('./dist/plugins/react'));
+    gulp.src('./bower_components/react/react-dom.js')
+        .pipe(gulp.dest('./dist/plugins/react'));
+    gulp.src('./bower_components/react/react-with-addons.js')
+        .pipe(gulp.dest('./dist/plugins/react'));
+    gulp.src('./bower_components/babel/browser.js')
+        .pipe(gulp.dest('./dist/js/babel'));
 })
 
 gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'load-components', 'webserver', 'reload', 'watch', 'dist']);

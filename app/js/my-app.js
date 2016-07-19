@@ -98,20 +98,24 @@ myApp.onPageInit('chooseAccountPage', function (e) {
             ]
         }
     ];
-    var chooseAccountVault = React.createFactory(ChooseAccountVault);
+    var chooseAccountList = React.createFactory(ChooseAccountList);
     ReactDOM.render(
-        chooseAccountVault({ id: accounts[1].vaults[0].id, name: accounts[1].vaults[0].name, chests: accounts[1].vaults[0].chests}),
-        document.getElementById('example')
+        chooseAccountList({ accounts: accounts}),
+        document.getElementById('chooseAccountForm')
     );
     $$('.chooseAccountPage label.label-radio input[type=radio]').change(function (event,obj) {
         billsView.router.back();
     });
+    var checkedAccountId = eval('(' + localStorage.getItem('f7form-chooseAccountForm')+ ')').account;
+    $$('input[name=account][value="'+ checkedAccountId + '"]').prop('checked', 'checked');
+
+    myApp.accordionOpen($$("input[type='radio'][name='account']:checked").parents('.accordion-item'));
 })
 
 myApp.onPageBack('chooseAccountPage', function (e) {
     var checkedAccount = $$("input[type='radio'][name='account']:checked")
     var accountId = checkedAccount.val(); 
-    var accountName = checkedAccount.parent().text();
+    var accountName = checkedAccount.data('name');
     $$('#txtAccount').data('id', accountId);
     $$('#txtAccount').val(accountName);
 })
