@@ -28,6 +28,11 @@ gulp.task('load-react', function () {
         .pipe(gulp.dest('./app/.tmp/js/babel'));
 });
 
+gulp.task('load-components', function () {
+    gulp.src('./app/components/**/*.js')
+        .pipe(gulp.dest('./app/.tmp/components'));
+});
+
 gulp.task('load-js', function () {
     gulp.src('./app/js/**/*.js')
         .pipe(gulp.dest('./app/.tmp/js'));
@@ -52,6 +57,7 @@ gulp.task('reload', function () {
         .pipe(watch('./app/**/*.html'))
         .pipe(watch('./app/.tmp/css/**/*.css'))
         .pipe(watch('./app/.tmp/js/**/*.js'))
+        .pipe(watch('./app/.tmp/components/**/*.js'))
         .pipe(connect.reload());
 })
 
@@ -59,6 +65,7 @@ gulp.task('watch', function () {
     gulp.watch('./app/**/*.html', ['reload']);
     gulp.watch('./app/css/**/*.less', ['less']);
     gulp.watch('./app/js/**/*.js', ['load-js']);
+    gulp.watch('./app/components/**/*.js', ['load-components']);
 })
 
 gulp.task('clean', function () {
@@ -85,4 +92,4 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/plugins/framework7/img'));
 })
 
-gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'webserver', 'reload', 'watch', 'dist']);
+gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'load-components', 'webserver', 'reload', 'watch', 'dist']);
