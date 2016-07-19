@@ -44,7 +44,7 @@ $$('#meView').on('show', function (page) {
     $$('.tab-me').addClass('active');
 });
 
-myApp.onPageInit('chooseAccountPage', function (e) {
+myApp.onPageBeforeInit('chooseAccountPage', function (e) {
     var accounts = [
         {
             id: 1,
@@ -125,10 +125,14 @@ myApp.onPageBack('chooseAccountPage', function (e) {
 })
 
 
-myApp.onPageInit('addSpendingPage', function (e) {
+myApp.onPageBeforeInit('addSpendingPage', function (e) {
     var spendingForm = React.createFactory(SpendingForm);
     ReactDOM.render(
         spendingForm({ id: 1, name: 'KFC', amount: 11.00, date: '2016-07-19', accountName: 'Family AA CC', remark: 'hello'}),
         document.getElementById('addSpendingForm')
     );
+});
+
+myApp.onPageInit('addSpendingPage', function (e) {
+    myApp.resizeTextarea('textarea.resizable');
 });
