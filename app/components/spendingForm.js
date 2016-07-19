@@ -39,7 +39,7 @@ SpendingForm = React.createClass({
                             <div className="item-inner">
                                 <div className="item-title label">Account</div>
                                 <div className="item-input">
-                                    <input id='txtAccount' type="text" name='account'/>
+                                    <input id='txtAccount' type="text" name='account' readOnly/>
                                 </div>
                             </div>
                         </div>
