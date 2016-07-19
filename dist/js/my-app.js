@@ -106,10 +106,14 @@ myApp.onPageInit('chooseAccountPage', function (e) {
     $$('.chooseAccountPage label.label-radio input[type=radio]').change(function (event,obj) {
         billsView.router.back();
     });
-    var checkedAccountId = eval('(' + localStorage.getItem('f7form-chooseAccountForm')+ ')').account;
-    $$('input[name=account][value="'+ checkedAccountId + '"]').prop('checked', 'checked');
 
-    myApp.accordionOpen($$("input[type='radio'][name='account']:checked").parents('.accordion-item'));
+    var formData = eval('(' + localStorage.getItem('f7form-chooseAccountForm')+ ')');
+    if(formData != null){
+        var checkedAccountId = formData.account;
+        $$('input[name=account][value="'+ checkedAccountId + '"]').prop('checked', 'checked');
+
+        myApp.accordionOpen($$("input[type='radio'][name='account']:checked").parents('.accordion-item'));
+    }
 })
 
 myApp.onPageBack('chooseAccountPage', function (e) {
@@ -119,3 +123,12 @@ myApp.onPageBack('chooseAccountPage', function (e) {
     $$('#txtAccount').data('id', accountId);
     $$('#txtAccount').val(accountName);
 })
+
+
+myApp.onPageInit('addSpendingPage', function (e) {
+    var spendingForm = React.createFactory(SpendingForm);
+    ReactDOM.render(
+        spendingForm({ id: 1, name: 'KFC', amount: 11.00, date: '2016-07-19', accountName: 'Family AA CC', remark: 'hello'}),
+        document.getElementById('addSpendingForm')
+    );
+});
