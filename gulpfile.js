@@ -26,6 +26,9 @@ gulp.task('load-react', function () {
         .pipe(gulp.dest('./app/.tmp/plugins/react'));
     gulp.src('./bower_components/babel/browser.js')
         .pipe(gulp.dest('./app/.tmp/js/babel'));
+        
+    gulp.src('./bower_components/reflux/dist/reflux.js')
+        .pipe(gulp.dest('./app/.tmp/plugins/reflux'));
 });
 
 gulp.task('load-components', function () {
@@ -101,6 +104,9 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/plugins/react'));
     gulp.src('./bower_components/babel/browser.js')
         .pipe(gulp.dest('./dist/js/babel'));
+        
+    gulp.src('./bower_components/reflux/dist/reflux.js')
+        .pipe(gulp.dest('./dist/plugins/reflux'));
 })
 
 gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'load-components', 'webserver', 'reload', 'watch', 'dist']);

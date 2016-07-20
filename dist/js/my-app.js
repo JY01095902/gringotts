@@ -45,92 +45,46 @@ $$('#meView').on('show', function (page) {
 });
 
 myApp.onPageBeforeInit('chooseAccountPage', function (e) {
-    var accounts = [
-        {
-            id: 1,
-            name: 'Family',
-            vaults: [
-                {
-                    id: 1,
-                    name: 'life',
-                    chests: [
-                        { id: 1, name: 'jiangshe-card' },
-                        { id: 2, name: 'cash' }
-                    ]
-                },
-                {
-                    id: 2,
-                    name: 'old',
-                    chests: [
-                        { id: 3, name: 'jiaotong-card' }
-                    ]
-                },
-                {
-                    id: 3,
-                    name: 'touzi',
-                    chests: [
-                        { id: 4, name: 'zhaoshang-card' }
-                    ]
-                },
-                {
-                    id: 4,
-                    name: 'travel',
-                    chests: [
-                        { id: 5, name: 'zhongxin-card' }
-                    ]
-                }
-            ]
-        },
-        {
-            id: 2,
-            name: 'Personal',
-            vaults: [
-                {
-                    id: 5,
-                    name: 'pocket money',
-                    chests: [
-                        { id: 6, name: 'guangda-card' },
-                        { id: 7, name: 'cash' },
-                        { id: 8, name: 'weixin' },
-                        { id: 9, name: 'alipay' }
-                    ]
-                }
-            ]
-        }
-    ];
     var chooseAccountList = React.createFactory(ChooseAccountList);
     ReactDOM.render(
-        chooseAccountList({ accounts: accounts}),
+        chooseAccountList({ 
+            checkedAccountId: e.query.chestId,
+            onChecked: function () {
+                billsView.router.back();
+                ReactDOM.unmountComponentAtNode(document.getElementById('chooseAccountForm'));
+            } 
+        }),
         document.getElementById('chooseAccountForm')
     );
-    $$('.chooseAccountPage label.label-radio input[type=radio]').change(function (event,obj) {
-        billsView.router.back();
-    });
-
-    var formData = eval('(' + localStorage.getItem('f7form-chooseAccountForm')+ ')');
-    if(formData != null){
-        var checkedAccountId = formData.account;
-        $$('input[name=account][value="'+ checkedAccountId + '"]').prop('checked', 'checked');
-
-        myApp.accordionOpen($$("input[type='radio'][name='account']:checked").parents('.accordion-item'));
-    }
+    ChooseAccountListActions.getAccounts();
 })
 
 myApp.onPageBack('chooseAccountPage', function (e) {
     var checkedAccount = $$("input[type='radio'][name='account']:checked")
-    var accountId = checkedAccount.val(); 
-    var accountName = checkedAccount.data('name');
-    $$('#txtAccount').data('id', accountId);
-    $$('#txtAccount').val(accountName);
+    var chestId = checkedAccount.val(); 
+    var chestFullName = checkedAccount.data('name');
+    var spending = SpendingFormActions.getData();
+    spending.chest.id = chestId;
+    spending.chest.fullName = chestFullName;
+    SpendingFormActions.setData(spending);
 })
 
 
 myApp.onPageBeforeInit('addSpendingPage', function (e) {
+    var spending = {
+        id: 1,
+        name: 'KFC',
+        amount: 11.00,
+        date: (new Date()).format('yyyy-MM-dd'),
+        chest: { id: 1, name: 'CCC' , fullName: 'AAA BBB CCC' },
+        remark: 'hello'
+    }
     var spendingForm = React.createFactory(SpendingForm);
     ReactDOM.render(
-        spendingForm({ id: 1, name: 'KFC', amount: 11.00, date: '2016-07-19', accountName: 'Family AA CC', remark: 'hello'}),
+        spendingForm(),
         document.getElementById('addSpendingForm')
     );
+    SpendingFormActions.setData(spending);
 });
 
 myApp.onPageInit('addSpendingPage', function (e) {

@@ -4,7 +4,11 @@ ChooseAccountVault = React.createClass({
         for(var i in this.props.chests){
             var chest = this.props.chests[i];
             chests.push(<li key={chest.id}>
-                            <ChooseAccountChest id={chest.id} name={chest.name} fullName={this.props.fullName + ' ' + this.props.name}/>
+                            <ChooseAccountChest 
+                                id={chest.id} 
+                                name={chest.name} 
+                                fullName={this.props.fullName + ' ' + this.props.name}
+                                onChecked={this.props.onChecked}/>
                         </li>);
         }
         return (

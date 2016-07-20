@@ -8,7 +8,8 @@ ChooseAccount = React.createClass({
                                 id={vault.id} 
                                 name={vault.name} 
                                 chests={vault.chests}
-                                fullName={this.props.name + ' ' + vault.name}
+                                fullName={this.props.name}
+                                onChecked={this.props.onChecked}
                                 />
                         );
         }

@@ -17,7 +17,8 @@
   ],
   "dependencies": {
     "Framework7": "framework7#^1.4.2",
-    "react": "^15.2.1"
+    "react": "^15.2.1",
+    "reflux": "^0.4.1"
   },
   "devDependencies": {
     "babel": "*"
