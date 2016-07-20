@@ -4,8 +4,11 @@ ChooseAccountList = React.createClass({
     },
     stateChange: function (data) {
         this.setState({ data: data });
-        $$('input[name=account][value="'+ this.props.checkedAccountId + '"]').prop('checked', 'checked');
-        myApp.accordionOpen($$("input[type='radio'][name='account']:checked").parents('.accordion-item'));
+        var chest = $$('input[name=account][value="'+ this.props.checkedAccountId + '"]');
+        if(chest.length > 0){
+            chest.prop('checked', 'checked');
+            myApp.accordionOpen($$("input[type='radio'][name='account']:checked").parents('.accordion-item'));
+        }
     },
     componentDidMount: function(){
         this.unsubscribe = ChooseAccountListStore.listen(this.stateChange);

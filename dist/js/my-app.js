@@ -49,7 +49,18 @@ myApp.onPageBeforeInit('chooseAccountPage', function (e) {
     ReactDOM.render(
         chooseAccountList({ 
             checkedAccountId: e.query.chestId,
-            onChecked: function () {
+            onChecked: function (e) {
+                var checkedAccount = e;
+                var chestId = checkedAccount.val(); 
+                var chestFullName = checkedAccount.data('name');
+                var spending = SpendingFormStore.data;
+                if(spending == null || spending == {}){
+                    spending = SpendingFormStore.emptyData;
+                }
+                spending.chest.id = chestId;
+                spending.chest.fullName = chestFullName;
+                SpendingFormActions.setData(spending);
+
                 billsView.router.back();
                 ReactDOM.unmountComponentAtNode(document.getElementById('chooseAccountForm'));
             } 
@@ -59,34 +70,10 @@ myApp.onPageBeforeInit('chooseAccountPage', function (e) {
     ChooseAccountListActions.getAccounts();
 })
 
-myApp.onPageBack('chooseAccountPage', function (e) {
-    var checkedAccount = $$("input[type='radio'][name='account']:checked")
-    var chestId = checkedAccount.val(); 
-    var chestFullName = checkedAccount.data('name');
-    var spending = SpendingFormActions.getData();
-    spending.chest.id = chestId;
-    spending.chest.fullName = chestFullName;
-    SpendingFormActions.setData(spending);
-})
-
-
 myApp.onPageBeforeInit('addSpendingPage', function (e) {
-    var spending = {
-        id: 1,
-        name: 'KFC',
-        amount: 11.00,
-        date: (new Date()).format('yyyy-MM-dd'),
-        chest: { id: 1, name: 'CCC' , fullName: 'AAA BBB CCC' },
-        remark: 'hello'
-    }
     var spendingForm = React.createFactory(SpendingForm);
     ReactDOM.render(
         spendingForm(),
         document.getElementById('addSpendingForm')
     );
-    SpendingFormActions.setData(spending);
-});
-
-myApp.onPageInit('addSpendingPage', function (e) {
-    myApp.resizeTextarea('textarea.resizable');
 });
