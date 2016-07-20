@@ -34,6 +34,8 @@ gulp.task('load-react', function () {
 gulp.task('load-components', function () {
     gulp.src('./app/components/**/*.js')
         .pipe(gulp.dest('./app/.tmp/components'));
+    gulp.src('./app/stores/**/*.js')
+        .pipe(gulp.dest('./app/.tmp/stores'));
 });
 
 gulp.task('load-js', function () {
@@ -91,10 +93,12 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/plugins/framework7/js'));
     gulp.src('./bower_components/Framework7/dist/img/*-ios.*')
         .pipe(gulp.dest('./dist/plugins/framework7/img'));
-    gulp.src('./app/.tmp/js/my-app.js')
+    gulp.src('./app/.tmp/js/**/*.js')
         .pipe(gulp.dest('./dist/js'));
     gulp.src('./app/.tmp/components/**/*.js')
         .pipe(gulp.dest('./dist/components'));
+    gulp.src('./app/.tmp/stores/**/*.js')
+        .pipe(gulp.dest('./dist/stores'));
         
     gulp.src('./bower_components/react/react.js')
         .pipe(gulp.dest('./dist/plugins/react'));
