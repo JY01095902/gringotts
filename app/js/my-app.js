@@ -70,6 +70,32 @@ myApp.onPageBeforeInit('chooseAccountPage', function (e) {
     ChooseAccountListActions.getAccounts();
 })
 
+myApp.onPageBeforeInit('chooseCategoryPage', function (e) {
+    var chooseCategoryList = React.createFactory(ChooseCategoryList);
+    ReactDOM.render(
+        chooseCategoryList({
+            checkedCategoryId: e.query.categoryId,
+            onChecked: function (e) {
+                var checkedCategory= e;
+                var categoryId = checkedCategory.val(); 
+                var categoryName = checkedCategory.data('name');
+                var spending = SpendingFormStore.data;
+                if(spending == null || spending == {}){
+                    spending = SpendingFormStore.emptyData;
+                }
+                spending.category.id = categoryId;
+                spending.category.name = categoryName;
+                SpendingFormActions.setData(spending);
+
+                billsView.router.back();
+                ReactDOM.unmountComponentAtNode(document.getElementById('chooseCategoryForm'));
+            } 
+        }),
+        document.getElementById('chooseCategoryForm')
+    );
+    ChooseCategoryListActions.getCategories();
+});
+
 myApp.onPageBeforeInit('addSpendingPage', function (e) {
     var spendingForm = React.createFactory(SpendingForm);
     ReactDOM.render(

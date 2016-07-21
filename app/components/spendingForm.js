@@ -15,6 +15,8 @@ SpendingForm = React.createClass({
         spending.date = $$(this.refs.date).val();
         spending.chest.id = $$(this.refs.chest).data('chestId');
         spending.chest.fullName = $$(this.refs.chest).val();
+        spending.category.id = $$(this.refs.category).data('categoryId');
+        spending.category.name = $$(this.refs.category).val();
         spending.remark = $$(this.refs.remark).val();
         SpendingFormActions.setData(spending);
     },
@@ -60,13 +62,28 @@ SpendingForm = React.createClass({
                     </div>
                     </li>
                     <li>
+                    <a href={"pages/chooseCategory.html?categoryId=" + this.state.data.category.id } className="item-link">
+                        <div className="item-content">
+                            <div className="item-inner">
+                                <div className="item-title label">Category</div>
+                                <div className="item-input">
+                                    <input type="text" name='category' readOnly 
+                                        data-categoryId={this.state.data.category.id} value={this.state.data.category.name} 
+                                        onChange={this.onChange} ref='category' />
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    </li>
+                    <li>
                     <a href={"pages/chooseAccount.html?chestId=" + this.state.data.chest.id } className="item-link">
                         <div className="item-content">
                             <div className="item-inner">
                                 <div className="item-title label">Account</div>
                                 <div className="item-input">
-                                    <input id='txtAccount' type="text" name='account' readOnly 
-                                    data-chestId={this.state.data.chest.id} value={this.state.data.chest.fullName} onChange={this.onChange} ref='chest' />
+                                    <input type="text" name='account' readOnly 
+                                        data-chestId={this.state.data.chest.id} value={this.state.data.chest.fullName} 
+                                        onChange={this.onChange} ref='chest' />
                                 </div>
                             </div>
                         </div>

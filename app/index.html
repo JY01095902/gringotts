@@ -66,7 +66,6 @@
                 <div class="pages navbar-through">
                     <div data-page="billsPage" class="page billsPage">
                         <div class="page-content">
-                            <input type="datetime-local" name="to" id="to" value="2014-12-08T15:43:00Z">
                             <div class="content-block-title">Mail App</div>
                             <div class="list-block media-list">
                                 <ul>
@@ -199,9 +198,17 @@
         <script type="text/javascript">
             var SpendingForm;
         </script>
+        
+        <script type="text/babel" src="/components/chooseCategoryList.js"></script>
+        <script type="text/babel" src="/components/chooseCategory.js"></script>
+        <script type="text/javascript">
+            var ChooseCategoryList;
+            var ChooseCategory;
+        </script>
 
         <!--stores-->
         <script type="text/javascript" src="/stores/chooseAccountListStore.js"></script>
         <script type="text/javascript" src="/stores/spendingFormStore.js"></script>
+        <script type="text/javascript" src="/stores/chooseCategoryListStore.js"></script>
     </body>
 </html>              
