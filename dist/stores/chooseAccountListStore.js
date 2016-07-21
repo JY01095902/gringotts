@@ -7,7 +7,7 @@ var ChooseAccountListStore = Reflux.createStore({
     listenables: [ChooseAccountListActions],
     onGetAccounts: function() {
         myApp.showIndicator();
-        setTimeout(function () {
+        //setTimeout(function () {
             var accounts = [
                 {
                     id: 1,
@@ -64,6 +64,6 @@ var ChooseAccountListStore = Reflux.createStore({
             ChooseAccountListStore.data = accounts;
             ChooseAccountListStore.trigger(ChooseAccountListStore.data);
             myApp.hideIndicator();
-        }, 500);
+        //}, 500);
     }
 });
