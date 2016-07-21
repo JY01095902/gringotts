@@ -7,6 +7,7 @@ ChooseCategoryList = React.createClass({
         var category = $$('input[name=category][value="'+ this.props.checkedCategoryId + '"]');
         if(category.length > 0){
             category.prop('checked', 'checked');
+            myApp.showTab($$("input[type='radio'][name='category']:checked").parents('.tab'));
         }
     },
     onChecked: function () {
@@ -21,10 +22,12 @@ ChooseCategoryList = React.createClass({
         this.unsubscribe();
     },
     render: function () {
-        var categories = [];
+        var outCategories = [];
+        var inCategories = [];
         for(var i in this.state.data){
             var category = this.state.data[i];
-            categories.push(
+            if(category.type == 'out'){
+                outCategories.push(
                             <li key={category.id}>
                                 <ChooseCategory 
                                     id={category.id} 
@@ -33,12 +36,34 @@ ChooseCategoryList = React.createClass({
                                     />
                             </li>
                         );
+            }else{
+                inCategories.push(
+                            <li key={category.id}>
+                                <ChooseCategory 
+                                    id={category.id} 
+                                    name={category.name}
+                                    onChecked={this.props.onChecked}
+                                    />
+                            </li>
+                        );
+            }
         }
         return (
-            <div className="list-block">
-                <ul>
-                    {categories}
-                </ul>
+            <div className="tabs">
+                <div id="outCategoriesTab" className="tab active">
+                    <div className="list-block">
+                        <ul>
+                            {outCategories}
+                        </ul>
+                    </div>
+                </div>
+                <div id="inCategoriesTab" className="tab">
+                    <div className="list-block">
+                        <ul>
+                            {inCategories}
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }

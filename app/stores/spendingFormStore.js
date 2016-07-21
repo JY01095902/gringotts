@@ -9,7 +9,7 @@ var SpendingFormStore = Reflux.createStore({
             name: '',
             amount: '',
             date: (new Date()).format('yyyy-MM-dd'),
-            category: { id: 0, name: '午餐' },
+            category: { id: 0, name: '', type: 'out' },
             chest: { id: 0, fullName: '' },
             remark: ''
         },

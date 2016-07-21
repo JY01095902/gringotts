@@ -22,7 +22,7 @@ SpendingForm = React.createClass({
     },
     componentDidMount: function(){
         this.unsubscribe = SpendingFormStore.listen(this.stateChange);
-            myApp.resizeTextarea('textarea.resizable');
+        myApp.resizeTextarea('textarea.resizable');
     },
     componentWillUnmount: function(){
         this.unsubscribe();
@@ -33,6 +33,7 @@ SpendingForm = React.createClass({
                 <ul>
                     <li>
                     <div className="item-content">
+                        <div className="item-media"><i className="icon icon-form-name"></i></div>
                         <div className="item-inner">
                             <div className="item-title label">Name</div>
                             <div className="item-input">

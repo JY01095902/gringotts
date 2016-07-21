@@ -103,3 +103,11 @@ myApp.onPageBeforeInit('addSpendingPage', function (e) {
         document.getElementById('addSpendingForm')
     );
 });
+
+myApp.onPageBeforeInit('addCategoryPage', function (e) {
+    var categoryForm = React.createFactory(CategoryForm);
+    ReactDOM.render(
+        categoryForm(),
+        document.getElementById('addCategoryForm')
+    );
+});

@@ -9,11 +9,14 @@ var ChooseCategoryListStore = Reflux.createStore({
         myApp.showIndicator();
         //setTimeout(function () {
             var categories = [
-                { id: 1, name: '早餐' },
-                { id: 2, name: '午餐' },
-                { id: 3, name: '零食' },
-                { id: 4, name: '公交卡充值' },
-                { id: 5, name: '饭卡充值' }
+                { id: 1, name: 'out 1', type: 'out' },
+                { id: 2, name: 'out 2', type: 'out' },
+                { id: 3, name: 'out 3', type: 'out' },
+                { id: 4, name: 'out 4', type: 'out' },
+                { id: 5, name: 'out 5', type: 'out' },
+                { id: 6, name: 'in 1', type: 'in' },
+                { id: 7, name: 'in 2', type: 'in' },
+                { id: 8, name: 'in 3', type: 'in' }
             ];
             ChooseCategoryListStore.data = categories;
             ChooseCategoryListStore.trigger(ChooseCategoryListStore.data);
