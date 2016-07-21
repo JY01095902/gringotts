@@ -18,7 +18,10 @@ SpendingForm = React.createClass({
         spending.category.id = $$(this.refs.category).data('categoryId');
         spending.category.name = $$(this.refs.category).val();
         spending.remark = $$(this.refs.remark).val();
-        SpendingFormActions.setData(spending);
+        this.setState({data: spending});
+    },
+    componentDidUpdate: function(){
+        SpendingFormActions.setData(this.state.data);
     },
     componentDidMount: function(){
         this.unsubscribe = SpendingFormStore.listen(this.stateChange);

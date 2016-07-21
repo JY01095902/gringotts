@@ -10,7 +10,10 @@ CategoryForm = React.createClass({
     onChange: function(){
         var category = this.state.data;
         category.name = $$(this.refs.name).val();
-        CategoryFormActions.setData(category);
+        this.setState({data: category});
+    },
+    componentDidUpdate: function(){
+        CategoryFormActions.setData(this.state.data);
     },
     componentDidMount: function(){
         this.unsubscribe = CategoryFormStore.listen(this.stateChange);
