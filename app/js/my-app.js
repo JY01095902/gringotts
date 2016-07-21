@@ -111,3 +111,11 @@ myApp.onPageBeforeInit('addCategoryPage', function (e) {
         document.getElementById('addCategoryForm')
     );
 });
+
+$$('#accountsView').on('show', function () {
+    var listView = React.createFactory(ListView);
+    ReactDOM.render(
+        listView(),
+        document.getElementById('listView')
+    );
+});

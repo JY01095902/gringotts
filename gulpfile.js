@@ -113,4 +113,4 @@ gulp.task('dist', ['clean'], function () {
         .pipe(gulp.dest('./dist/plugins/reflux'));
 })
 
-gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'load-components', 'webserver', 'reload', 'watch', 'dist']);
+gulp.task('default', ['load-framework7', 'load-react', 'less', 'load-js', 'load-components', 'dist', 'webserver', 'reload', 'watch']);
