@@ -39,15 +39,12 @@
                     <div data-page="accountsPage" class="page">
                         <!-- Scrollable page content -->
                         <div class="page-content">
-                            <div id='listView' ></div>
-                            <!--
                             <div class="infinite-scroll" data-distance="100" style="overflow: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; height: 100%; position: relative; z-index: 1;">
-                                <div id='listView'></div>
+                                <div id='accountsList'></div>
                                 <div class="infinite-scroll-preloader" style="margin-top:-20px; margin-bottom: 10px; text-align: center;">
                                     <div class="preloader" style="width:34px; height:34px;"></div>
                                 </div>
                             </div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -74,59 +71,11 @@
                 <div class="pages navbar-through">
                     <div data-page="billsPage" class="page billsPage">
                         <div class="page-content">
-                            <div class="content-block-title">Mail App</div>
-                          
-                            <div class="list-block media-list">
-                                <ul>
-                                    <li>
-                                    <a href="#" class="item-link item-content">
-                                        <div class="item-inner">
-                                            <div class="item-title-row">
-                                                <div class="item-title">Twitter</div>
-                                                <div class="item-after">￥19.50</div>
-                                            </div>
-                                            <div class="item-title-row">
-                                                <div class="item-subtitle">New messages</div>
-                                                <div class="item-after">from John Doe</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    </li>
-                                    <li class="swipeout">
-                                    <div class="swipeout-content">
-                                        <a href="#" class="item-link item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title-row">
-                                                    <div class="item-title">Twitter</div>
-                                                    <div class="item-after">￥19.50</div>
-                                                </div>
-                                                <div class="item-title-row">
-                                                    <div class="item-subtitle">New messages</div>
-                                                    <div class="item-after">from John Doe</div>
-                                                </div>
-                                                <div class="item-text">Lorem ipsum dolor sit amet...</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="swipeout-actions-right">
-                                        <a href="#" class="swipeout-delete">Delete</a>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <a href="#" class="item-link item-content">
-                                        <div class="item-inner">
-                                            <div class="item-title-row">
-                                                <div class="item-title">Twitter</div>
-                                                <div class="item-after">￥19.50</div>
-                                            </div>
-                                            <div class="item-title-row">
-                                                <div class="item-subtitle">New messages</div>
-                                                <div class="item-after">from John Doe</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    </li>
-                                </ul>
+                            <div class="infinite-scroll" data-distance="100" style="overflow: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; height: 100%; position: relative; z-index: 1;">
+                                <div id='billsList'></div>
+                                <div class="infinite-scroll-preloader" style="margin-top:-20px; margin-bottom: 10px; text-align: center;">
+                                    <div class="preloader" style="width:34px; height:34px;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -230,7 +179,9 @@
         <script type="text/javascript" src="/stores/chooseCategoryListStore.js"></script>
         <script type="text/javascript" src="/stores/categoryFormStore.js"></script>
         <script type="text/javascript" src="/stores/BillsStore.js"></script>
+        <script type="text/javascript" src="/stores/AccountsStore.js"></script>
         
         <script type="text/javascript" src="/js/my-app.js"></script>
+
     </body>
 </html>              
