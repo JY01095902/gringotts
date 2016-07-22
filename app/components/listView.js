@@ -1,34 +1,42 @@
 ListView = React.createClass({
     getInitialState: function () {
         return { 
-            data: [{
-                img: { src: 'http://hbimg.b0.upaiyun.com/2ea272aa3c9448fd25180eb2f3045c079b5a17761f1a9-VB981Y_fw658' },
-                icon: { className: 'icon icon-f7' },
-                title: 'title',
-                titleAfter: 'title-after',
-                subtitle: 'subtitle',
-                subtitleAfter: 'subtitle-after',
-                text: 'text'
-            },
-            {
-                img: { src: 'http://hbimg.b0.upaiyun.com/c0f77cbbffedfd48335f68faee5bd370a5c765d93beb1-0jR7U3_fw658' },
-                icon: { className: 'icon icon-f7' },
-                title: 'title',
-                titleAfter: 'title-after',
-                subtitle: 'subtitle',
-                subtitleAfter: 'subtitle-after',
-                text: 'text'
-            },
-            {
-                img: { src: 'http://hbimg.b0.upaiyun.com/5428a4778050235404d240025cdaef9e6e276c13817c-3sZIxe_fw658' },
-                icon: { className: 'icon icon-f7' },
-                title: 'title',
-                titleAfter: 'title-after',
-                subtitle: 'subtitle',
-                subtitleAfter: 'subtitle-after',
-                text: ''
-            }]
+            data: []
         };
+    },
+    stateChange: function (data) {
+        this.setState({ data: data });
+    },
+    componentDidMount: function(){
+        this.unsubscribe = BillsStore.listen(this.stateChange);
+
+        console.log($$('.infinite-scroll'));
+
+        
+
+        // 加载flag
+        var loading = false;
+
+        $$('.infinite-scroll').on('infinite', function () {
+            console.log(11);
+            // 如果正在加载，则退出
+            if (loading) return;
+            
+            // 设置flag
+            loading = true;
+            
+            // 模拟1s的加载过程
+            setTimeout(function () {
+                // 重置加载flag
+                loading = false;
+                var endIndex = startIndex + pageSize;
+                BillsActions.getData(startIndex, endIndex);
+                startIndex = endIndex;
+            }, 1000);
+        });   
+    },
+    componentWillUnmount: function(){
+        this.unsubscribe();
     },  
     render: function () {
         var items = [];
@@ -46,7 +54,7 @@ ListView = React.createClass({
                         media = <i className={icon.className}></i>;
                     }
                 }
-                var item = <li key={i}>
+                var item = <li key={i} data-id={i}>
                                 <a href="#" className="item-link item-content">
                                     <div className="item-media">{media}</div>
                                     <div className="item-inner">
@@ -66,10 +74,15 @@ ListView = React.createClass({
             }
         }
         return (
-            <div className="list-block media-list">
-                <ul>
-                    {items}
-                </ul>
+            <div className="infinite-scroll" data-distance="100" style={{overflow: 'auto', WebkitOverflowScrolling: 'touch', boxSizing: 'border-box', height: '100%', position: 'relative', zIndex: '1'}}>
+                <div className="list-block media-list">
+                    <ul>
+                        {items}
+                    </ul>
+                </div>
+                <div className="infinite-scroll-preloader" style={{marginTop: '-20px', marginBottom: '10px', textAlign: 'center'}}>
+                    <div className="preloader" style={{width: '34px', height: '34px'}}></div>
+                </div>
             </div>
         );
     }

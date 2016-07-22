@@ -39,7 +39,15 @@
                     <div data-page="accountsPage" class="page">
                         <!-- Scrollable page content -->
                         <div class="page-content">
-                            <div id='listView'></div>
+                            <div id='listView' ></div>
+                            <!--
+                            <div class="infinite-scroll" data-distance="100" style="overflow: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box; height: 100%; position: relative; z-index: 1;">
+                                <div id='listView'></div>
+                                <div class="infinite-scroll-preloader" style="margin-top:-20px; margin-bottom: 10px; text-align: center;">
+                                    <div class="preloader" style="width:34px; height:34px;"></div>
+                                </div>
+                            </div>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -221,6 +229,7 @@
         <script type="text/javascript" src="/stores/spendingFormStore.js"></script>
         <script type="text/javascript" src="/stores/chooseCategoryListStore.js"></script>
         <script type="text/javascript" src="/stores/categoryFormStore.js"></script>
+        <script type="text/javascript" src="/stores/BillsStore.js"></script>
         
         <script type="text/javascript" src="/js/my-app.js"></script>
     </body>

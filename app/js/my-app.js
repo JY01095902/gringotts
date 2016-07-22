@@ -112,10 +112,17 @@ myApp.onPageBeforeInit('addCategoryPage', function (e) {
     );
 });
 
+
+var startIndex = 0;
+var pageSize = 10;
+
 $$('#accountsView').on('show', function () {
     var listView = React.createFactory(ListView);
     ReactDOM.render(
         listView(),
         document.getElementById('listView')
     );
-});
+    var endIndex = startIndex + pageSize;
+    BillsActions.getData(startIndex, endIndex);
+    startIndex = endIndex;
+});       
