@@ -1,9 +1,13 @@
+var AccountsActions = Reflux.createActions([
+    'getNextPage'
+]);
+
 var AccountsStore = Reflux.createStore({
     data: [],
     from: 1,
     to: 15,
     pageSize: 15,
-    listenables:[BillsActions],
+    listenables:[AccountsActions],
     onGetNextPage: function () {
         var fetchedData = getOriginalAccountsData(this.from, this.to);
         this.data = this.data.concat(fetchedData);

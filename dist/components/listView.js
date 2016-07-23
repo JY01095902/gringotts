@@ -7,10 +7,25 @@ ListView = React.createClass({
     stateChange: function (data) {
         this.setState({ data: data });
     },
+    handleScroll: function(event){
+        var inf = $$(event.target);
+        var scrollTop = inf[0].scrollTop;
+        var scrollHeight = inf[0].scrollHeight;
+        var height = inf[0].offsetHeight;
+        var distance = inf[0].getAttribute('data-distance');
+        if (!distance) distance = 50;
+        if (typeof distance === 'string' && distance.indexOf('%') >= 0) {
+            distance = parseInt(distance, 10) / 100 * height;
+        }
+        if (distance > height) distance = height;
+        if (scrollTop + height >= scrollHeight - distance) {
+            this.props.config.onInfinite();
+        }
+    },
     componentDidMount: function(){
         this.unsubscribe = this.props.config.store.listen(this.stateChange);    
         if (this.isMounted()) {
-            BillsActions.getNextPage();
+            this.props.config.componentDidMount();
         }
     },
     componentWillUnmount: function(){
@@ -78,10 +93,15 @@ ListView = React.createClass({
         </div>
         */
         return (
-            <div className="list-block media-list">
-                <ul>
-                    {items}
-                </ul>
+            <div data-distance="100" onScroll={this.handleScroll} style={{overflow: 'auto', WebkitOverflowScrolling: 'touch', boxSizing: 'border-box', height: '100%', position: 'relative', zIndex: '1'}}>
+                <div className="list-block media-list">
+                    <ul>
+                        {items}
+                    </ul>
+                </div>
+                <div className="infinite-scroll-preloader" style={{marginTop: '-20px', marginBottom: '10px', textAlign: 'center'}}>
+                    <div className="preloader" style={{width: '34px', height: '34px'}}></div>
+                </div>
             </div>
         );
     }

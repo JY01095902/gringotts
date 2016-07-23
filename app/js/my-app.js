@@ -110,55 +110,59 @@ myApp.onPageBeforeInit('addCategoryPage', function (e) {
         categoryForm(),
         document.getElementById('addCategoryForm')
     );
-});
-
-$$('#accountsView').on('show', function () {
-    var listView = React.createFactory(ListView);
-    ReactDOM.render(
-        listView({
-            config: { store: AccountsStore}
-        }),
-        document.getElementById('accountsList')
-    );
-});    
+});  
 
 // 加载flag
-var loading = false;
-$$('#accountsList').parents('.infinite-scroll').on('infinite', function () {
-    // 如果正在加载，则退出
-    if (loading) return;
-    
-    // 设置flag
-    loading = true;
-    
-    // 模拟1s的加载过程
-    setTimeout(function () {
-        // 重置加载flag
-        loading = false;
-        BillsActions.getNextPage();
-    }, 1000);
-}); 
-
+var accountsListLoading = false;
 $$('#accountsView').on('show', function () {
     var listView = React.createFactory(ListView);
     ReactDOM.render(
         listView({
-            config: { store: AccountsStore}
+            config: { 
+                store: AccountsStore,
+                componentDidMount: function () {
+                    AccountsActions.getNextPage();
+                },
+                onInfinite: function () {
+                    if (accountsListLoading) return;
+                    accountsListLoading = true;
+                    setTimeout(function () {
+                        // 重置加载flag
+                        accountsListLoading = false;
+                        AccountsActions.getNextPage();
+                    }, 1000);
+                }
+            }
         }),
         document.getElementById('accountsList')
     );
 });  
 
-var acctountsListInterval = setInterval(function(){
+var billsListLoading = false;
+var billsListInterval = setInterval(function(){
     if(ListView != null && ListView != undefined){
         var listView = React.createFactory(ListView);
             ReactDOM.render(
                 listView({
-                    config: { store: BillsStore}
+                    config: { 
+                        store: BillsStore,
+                        componentDidMount: function () {
+                            BillsActions.getNextPage();
+                        },
+                        onInfinite: function () {
+                            if (billsListLoading) return;
+                            billsListLoading = true;
+                            setTimeout(function () {
+                                // 重置加载flag
+                                billsListLoading = false;
+                                BillsActions.getNextPage();
+                            }, 1000);
+                        }
+                    }
                 }),
                 document.getElementById('billsList')
             );
-        clearInterval(acctountsListInterval);
+        clearInterval(billsListInterval);
     }
 }, 10)
 
