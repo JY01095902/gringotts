@@ -122,16 +122,21 @@ $$('#accountsView').on('show', function () {
                 store: AccountsStore,
                 componentDidMount: function () {
                     AccountsActions.getNextPage();
-                },
-                onInfinite: function () {
-                    if (accountsListLoading) return;
-                    accountsListLoading = true;
-                    setTimeout(function () {
-                        // 重置加载flag
-                        accountsListLoading = false;
-                        AccountsActions.getNextPage();
-                    }, 1000);
                 }
+                ,
+                infinite:{
+                    dataTotalCount: 60,
+                    distance: 100,
+                    onInfinite: function () {
+                        if (accountsListLoading) return;
+                        accountsListLoading = true;
+                        setTimeout(function () {
+                            // 重置加载flag
+                            accountsListLoading = false;
+                            AccountsActions.getNextPage();
+                        }, 1000);
+                    }
+                }/**/
             }
         }),
         document.getElementById('accountsList')
@@ -149,14 +154,18 @@ var billsListInterval = setInterval(function(){
                         componentDidMount: function () {
                             BillsActions.getNextPage();
                         },
-                        onInfinite: function () {
-                            if (billsListLoading) return;
-                            billsListLoading = true;
-                            setTimeout(function () {
-                                // 重置加载flag
-                                billsListLoading = false;
-                                BillsActions.getNextPage();
-                            }, 1000);
+                        infinite:{
+                            dataTotalCount: 180,
+                            distance: 100,
+                            onInfinite: function () {
+                                if (billsListLoading) return;
+                                billsListLoading = true;
+                                setTimeout(function () {
+                                    // 重置加载flag
+                                    billsListLoading = false;
+                                    BillsActions.getNextPage();
+                                }, 1000);
+                            }
                         }
                     }
                 }),

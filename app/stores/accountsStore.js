@@ -30,7 +30,7 @@ function getOriginalAccountsData(from, to) {
                 text: ''
             });
         }
-        for(var i = 0; i < 60; i++){
+        /*for(var i = 0; i < 60; i++){
             originalData.push({
                 img: { src: '' },
                 icon: { className: 'icon icon-f7' },
@@ -51,6 +51,6 @@ function getOriginalAccountsData(from, to) {
                 subtitleAfter: 'subtitle-after',
                 text: ''
             });
-        }
+        }*/
     return originalData.slice(from - 1, to);
 }
