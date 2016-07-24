@@ -31,6 +31,9 @@ ListView = React.createClass({
             && this.props.config.infinite != {}){
             this.setState({infinite: true});
         }
+        if(this.props.data){
+            this.setState({data: this.props.data});
+        }
     },
     componentDidMount: function(){
         this.unsubscribe = this.props.config.store.listen(this.stateChange);    
@@ -43,35 +46,35 @@ ListView = React.createClass({
     },  
     render: function () {
         var items = [];
-        var data = this.state.data;
-        if(data && data.length > 0){
-            for(var i in data){
-                var item = <ListViewItem data={data[i]} />;
-                items.push(item);
-            }
-        }
         var infiniteBar = null;
-        if(this.state.infinite && data
-            && this.state.data.length < this.props.config.infinite.dataTotalCount)
-        {
-            var dataTotalCount = this.props.config.infinite.dataTotalCount;
-            infiniteBar = <div style={{marginTop: '-20px', marginBottom: '10px'}}>
-                            <div style={{textAlign: 'center'}}>
-                                <div style={{textAlign: 'right', display: 'inline-flex', verticalAlign: 'top'}}>
-                                    <div className="preloader" style={{width: '24px', height: '24px'}}></div>
+        var data = this.state.data;
+        if(data){
+            if(data && data.length > 0){
+                for(var i in data){
+                    var item = <ListViewItem key={i} data={data[i].data} config={data[i].config} />;
+                    items.push(item);
+                }
+            }
+            if(this.state.infinite && data
+                && this.state.data.length < this.props.config.infinite.dataTotalCount)
+            {
+                var dataTotalCount = this.props.config.infinite.dataTotalCount;
+                infiniteBar = <div style={{marginTop: '-20px', marginBottom: '10px'}}>
+                                <div style={{textAlign: 'center'}}>
+                                    <div style={{textAlign: 'right', display: 'inline-flex', verticalAlign: 'top'}}>
+                                        <div className="preloader" style={{width: '24px', height: '24px'}}></div>
+                                    </div>
+                                    <span style={{textAlign: 'left', display: 'inline-block', paddingLeft: '10px'}}>
+                                        <div >
+                                            <span>加载中...</span>
+                                        </div>
+                                        <div >
+                                            <span>正在为您获取({this.state.data.length}/{dataTotalCount})</span>
+                                        </div>
+                                    </span>
                                 </div>
-                                <span style={{textAlign: 'left', display: 'inline-block', paddingLeft: '10px'}}>
-                                    <div >
-                                        <span>加载中...</span>
-                                    </div>
-                                    <div >
-                                        <span>正在为您获取({this.state.data.length}/{dataTotalCount})</span>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>;
-        }else{
-
+                            </div>;
+            }
         }
         return (
             <div onScroll={this.handleScroll} style={{overflow: 'auto', WebkitOverflowScrolling: 'touch', boxSizing: 'border-box', height: '100%', position: 'relative', zIndex: '1'}}>

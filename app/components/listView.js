@@ -31,6 +31,9 @@ ListView = React.createClass({
             && this.props.config.infinite != {}){
             this.setState({infinite: true});
         }
+        if(this.props.data){
+            this.setState({data: this.props.data});
+        }
     },
     componentDidMount: function(){
         this.unsubscribe = this.props.config.store.listen(this.stateChange);    
@@ -48,7 +51,7 @@ ListView = React.createClass({
         if(data){
             if(data && data.length > 0){
                 for(var i in data){
-                    var item = <ListViewItem key={i} data={data[i]} />;
+                    var item = <ListViewItem key={i} data={data[i].data} config={data[i].config} />;
                     items.push(item);
                 }
             }

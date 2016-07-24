@@ -118,6 +118,7 @@ $$('#accountsView').on('show', function () {
     var listView = React.createFactory(ListView);
     ReactDOM.render(
         listView({
+            //data: getOriginalAccountsData(1, 20),
             config: { 
                 store: AccountsStore,
                 componentDidMount: function () {
@@ -142,6 +143,7 @@ $$('#accountsView').on('show', function () {
         document.getElementById('accountsList')
     );
 });  
+
 
 var billsListLoading = false;
 var billsListInterval = setInterval(function(){
@@ -174,20 +176,3 @@ var billsListInterval = setInterval(function(){
         clearInterval(billsListInterval);
     }
 }, 10)
-
-// 加载flag
-var loading = false;
-$$('#billsList').parents('.infinite-scroll').on('infinite', function () {
-    // 如果正在加载，则退出
-    if (loading) return;
-    
-    // 设置flag
-    loading = true;
-    
-    // 模拟1s的加载过程
-    setTimeout(function () {
-        // 重置加载flag
-        loading = false;
-        BillsActions.getNextPage();
-    }, 1000);
-}); 
