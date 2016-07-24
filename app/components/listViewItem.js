@@ -97,29 +97,5 @@ ListViewItem = React.createClass({
            
         }
         return(listViewItem);
-        /*
-        <li class="swipeout">
-            <!-- 被“swipeout-content”包裹起来的普通列表元素 -->
-            <div class="swipeout-content">
-                <!-- 你的列表元素放在这里 -->
-                <div class="item-content">
-                    <div class="item-media">...</div>
-                    <div class="item-inner">...</div>
-                </div>
-            </div>
-            <!-- Swipeout actions left -->
-            <div class="swipeout-actions-left">
-                <!-- Swipeout actions links/buttons -->
-                <a href="#">Action 1</a>
-                <a href="#">Action 2</a>
-            </div>
-            <!-- Swipeout actions right -->
-            <div class="swipeout-actions-right">
-                <!-- Swipeout actions links/buttons -->
-                <a href="#">Action 1</a>
-                <a class="swipeout-close" href="#">Action 2</a>
-            </div>
-        </li>
-        */
     }
 });
