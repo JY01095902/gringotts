@@ -31,9 +31,6 @@
                     <div class="navbar-inner">
                         <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                         <div class="center sliding">ACCOUNTS</div>
-                        <div class="right">
-                            <a id='aTest' href="#" class="link">Test</a>
-                        </div>
                     </div>
                 </div>
                 <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
@@ -175,17 +172,6 @@
         <script type="text/javascript" src="/stores/AccountsStore.js"></script>
         
         <script type="text/javascript" src="/js/my-app.js"></script>
-        <script type="text/javascript">
-            $$('#aTest').on('click', function(){
-                var data = null;
-                if(data){
-                    alert(AccountsStore.data);
-                }else{
-                    alert(AccountsStore.data);
-                    alert(AccountsStore.data[0].data.title);
-                }
-            })
-        </script>
 
     </body>
 </html>              
