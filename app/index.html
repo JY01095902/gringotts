@@ -175,6 +175,17 @@
         <script type="text/javascript" src="/stores/AccountsStore.js"></script>
         
         <script type="text/javascript" src="/js/my-app.js"></script>
+        <script type="text/javascript">
+            $$('#aTest').on('click', function(){
+                var data = null;
+                if(data){
+                    alert(AccountsStore.data);
+                }else{
+                    alert(AccountsStore.data);
+                    alert(AccountsStore.data[0].data.title);
+                }
+            })
+        </script>
 
     </body>
 </html>              

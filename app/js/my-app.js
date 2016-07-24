@@ -144,12 +144,6 @@ $$('#accountsView').on('show', function () {
     );
 });  
 
-
-$$('#aTest').click(function () {
-    alert(AccountsStore.data)
-    alert(AccountsStore.data[0].data.title)
-});
-
 var billsListLoading = false;
 var billsListInterval = setInterval(function(){
     if(ListView != null && ListView != undefined){
