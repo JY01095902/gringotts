@@ -31,6 +31,14 @@ function getOriginalAccountsData(from, to) {
                     text: ''
                 },
                 config:{
+                    link:{
+                        href: '#'
+                    },
+                    check:{
+                        name:'check',
+                        multi: false,
+                        checked: i ==0 ?'checked':''
+                    },
                     swipeout:{
                         leftActions:[
                             {   

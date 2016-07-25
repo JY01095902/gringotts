@@ -21,6 +21,7 @@ ListViewItem = React.createClass({
     },
     render: function () {
         var item = this.state.data;
+        var config = this.props.config;
         var media = null;
         var title = null;
         var titleAfter = null;
@@ -53,49 +54,87 @@ ListViewItem = React.createClass({
                 text = <div className="item-text" style={{height: 'auto'}}>{item.text}</div>;
             }
         }
-        var itemContent = <a href="#" className="item-link item-content">
-                                <div className="item-media">{media}</div>
-                                <div className="item-inner">
-                                    <div className="item-title-row">
-                                        {title}
-                                        {titleAfter}
-                                    </div>
-                                    <div className="item-title-row" style={{backgroundImage: 'none'}}>
-                                        {subtitle}
-                                        {subtitleAfter}
-                                    </div>
-                                    {text}
-                                </div>
-                            </a>;
+        var itemMedia = <div className="item-media">{media}</div>;
+        var itemInner = <div className="item-inner">
+                            <div className="item-title-row">
+                                {title}
+                                {titleAfter}
+                            </div>
+                            <div className="item-title-row" style={{backgroundImage: 'none'}}>
+                                {subtitle}
+                                {subtitleAfter}
+                            </div>
+                            {text}
+                        </div>;
+        //普通样式
+        var itemContent = <div className="item-content">
+                                {itemMedia}
+                                {itemInner}
+                            </div>;
         var listViewItem = <li>{itemContent}</li>;
-        var config = this.props.config;
-        if(config && this.props.config.swipeout && this.props.config.swipeout != {}){
-            var leftActions = this.props.config.swipeout.leftActions;
-            var leftSwipeout = null;
-            if(leftActions){
-                var actions = this.generateActions(leftActions);
-                leftSwipeout = <div className="swipeout-actions-left">
-                                    {actions}
-                                </div>;
+        if(config && config != {}){
+            //带链接箭头
+            if(config.link && config.link != {}){
+                itemContent = <a href={config.link.href} className="item-link item-content">
+                                    {itemMedia}
+                                    {itemInner}
+                                </a>;
+            }
+            if(config.check && config.check != {}){
+                //单选radio
+                if(config.check)
+                {
+                    if(config.check.multi === false){
+                        itemContent = <label className="label-radio item-content">
+                                            <input type="radio" name={config.check.name} value="Books" checked={config.check.checked} />
+                                            {itemMedia}
+                                            {itemInner}
+                                        </label>;
+                    }
+                    else if (config.check.multi === true)
+                    {
+                        //复选
+                        itemContent = <label className="label-checkbox item-content">
+                                            <input type="checkbox" name={config.check.name} value="Books" checked={config.check.checked} />
+                                            <div className="item-media">
+                                                <i className="icon icon-form-checkbox"></i>
+                                                {media}
+                                            </div>
+                                            {itemInner}
+                                        </label>;
+                    }
+                }
             }
 
-            var rightActions = this.props.config.swipeout.rightActions;
-            var rightSwipeout = null;
-            if(rightActions){
-                var actions = this.generateActions(rightActions);
-                rightSwipeout = <div className="swipeout-actions-right">
-                                    {actions}
-                                </div>;
+            if(config.swipeout && config.swipeout != {}){
+                var leftActions = config.swipeout.leftActions;
+                var leftSwipeout = null;
+                if(leftActions){
+                    var actions = this.generateActions(leftActions);
+                    leftSwipeout = <div className="swipeout-actions-left">
+                                        {actions}
+                                    </div>;
+                }
+
+                var rightActions = config.swipeout.rightActions;
+                var rightSwipeout = null;
+                if(rightActions){
+                    var actions = this.generateActions(rightActions);
+                    rightSwipeout = <div className="swipeout-actions-right">
+                                        {actions}
+                                    </div>;
+                }
+                listViewItem = <li className="swipeout">
+                                    <div className="swipeout-content">
+                                        {itemContent}
+                                    </div>
+                                    {leftSwipeout}
+                                    {rightSwipeout}
+                                </li>;
+            
             }
-            listViewItem = <li className="swipeout">
-                                <div className="swipeout-content">
-                                    {itemContent}
-                                </div>
-                                {leftSwipeout}
-                                {rightSwipeout}
-                            </li>;
-           
         }
+        
         return(listViewItem);
     }
 });
