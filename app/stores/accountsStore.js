@@ -22,6 +22,7 @@ function getOriginalAccountsData(from, to) {
         for(var i = 0; i < 30; i++){
             originalData.push({
                 data:{
+                    id: i,
                     img: { src: '' },
                     icon: { className: 'icon icon-f7' },
                     title: 'title',
@@ -35,9 +36,10 @@ function getOriginalAccountsData(from, to) {
                         href: '#'
                     },
                     check:{
-                        name:'check',
+                        name:'myCheck',
+                        value: i,
                         multi: false,
-                        checked: i ==1 ?'checked':''
+                        checked: i == 1 ?'checked':''
                     },
                     swipeout:{
                         leftActions:[

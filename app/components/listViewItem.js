@@ -86,7 +86,7 @@ ListViewItem = React.createClass({
                 {
                     if(config.check.multi === false){
                         itemContent = <label className="label-radio item-content">
-                                            <input type="radio" name={config.check.name} value="Books" checked={config.check.checked} />
+                                            <input type="radio" name={config.check.name} value={config.check.value} checked={config.check.checked} />
                                             {itemMedia}
                                             {itemInner}
                                         </label>;
@@ -95,7 +95,7 @@ ListViewItem = React.createClass({
                     {
                         //复选
                         itemContent = <label className="label-checkbox item-content">
-                                            <input type="checkbox" name={config.check.name} value="Books" checked={config.check.checked} />
+                                            <input type="checkbox" name={config.check.name} value={config.check.value} checked={config.check.checked} />
                                             <div className="item-media">
                                                 <i className="icon icon-form-checkbox"></i>
                                                 {media}
